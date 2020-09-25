@@ -39,6 +39,14 @@ class GildedRoseTest {
     }
 
     @Test
+    void should_increase_quality_twice_as_fast_and_decrease_sellin() {
+        Item[] items = new Item[] { new Item("Aged Brie", -1, 30) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Aged Brie, -2, 32", app.items[0].toString());
+    }
+
+    @Test
     void when_the_quality_is_50_should_not_increase_the_quality_and_decrease_the_sellIn_for_an_aged_brie() {
         Item[] items = new Item[] { new Item("Aged Brie", 9, 50) };
         GildedRose app = new GildedRose(items);
