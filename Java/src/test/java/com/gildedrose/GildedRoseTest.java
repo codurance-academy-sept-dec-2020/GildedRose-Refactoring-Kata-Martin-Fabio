@@ -31,7 +31,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void should_increase_the_quality_twice_and_decrease_the_sellIn_for_an_aged_brie() {
+    void should_increase_the_quality_once_and_decrease_the_sellIn_for_an_aged_brie() {
         Item[] items = new Item[] { new Item("Aged Brie", 9, 10) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -46,6 +46,11 @@ class GildedRoseTest {
         assertEquals("Aged Brie, 8, 50", app.items[0].toString());
     }
 
-
-
+    @Test
+    void keep_quality_and_sellin_with_same_value() {
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 10, 40) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Sulfuras, Hand of Ragnaros, 10, 40", app.items[0].toString());
+    }
 }
