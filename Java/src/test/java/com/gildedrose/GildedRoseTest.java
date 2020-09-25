@@ -77,4 +77,12 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals("Backstage passes to a TAFKAL80ETC concert, -1, 0", app.items[0].toString());
     }
+
+    @Test
+    void should_increase_quality_once_when_sellin_is_bigger_than_ten () {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 12, 40) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 11, 41", app.items[0].toString());
+    }
 }
