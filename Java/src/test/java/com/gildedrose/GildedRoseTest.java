@@ -53,4 +53,20 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals("Sulfuras, Hand of Ragnaros, 10, 40", app.items[0].toString());
     }
+
+    @Test
+    void should_increase_quality_twice_when_selling_is_less_than_ten() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 10, 40) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 9, 42", app.items[0].toString());
+    }
+
+    @Test
+    void should_increase_quality_three_times_when_selling_is_less_than_five() {
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 4, 40) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Backstage passes to a TAFKAL80ETC concert, 3, 43", app.items[0].toString());
+    }
 }
