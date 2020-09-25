@@ -15,6 +15,14 @@ class GildedRoseTest {
     }
 
     @Test
+    void should_lose_quality_twice_as_fast_for_normal_expired_item() {
+        Item[] items = new Item[] { new Item("Frijolitos", 0, 50) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals("Frijolitos, -1, 48", app.items[0].toString());
+    }
+
+    @Test
     void when_quality_is_0_should_not_decrease_the_quality_and_decrease_the_sellIn_once_for_normal_item() {
         Item[] items = new Item[] { new Item("Frijolitos", 10, 0) };
         GildedRose app = new GildedRose(items);
