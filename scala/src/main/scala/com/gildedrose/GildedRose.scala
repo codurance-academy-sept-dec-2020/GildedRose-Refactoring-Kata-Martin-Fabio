@@ -31,6 +31,10 @@ class GildedRose(val items: Array[Item]) {
             increaseQuality(i)
           }
         }
+
+        if (isSellinLessThan(i, 0)) {
+          items(i).quality = items(i).quality - items(i).quality
+        }
       } else if (items(i).name.equals(SULFURAS)) {
       } else {
         decreaseSellin(i)
@@ -45,11 +49,9 @@ class GildedRose(val items: Array[Item]) {
       }
 
       if (isSellinLessThan(i, 0)) {
-        if (!items(i).name.equals(AGE_BRIE)) {
-          if (items(i).name.equals(BACKSTAGE_PASSES)) {
-            items(i).quality = items(i).quality - items(i).quality
-          }
-        } else {
+        if (items(i).name.equals(AGE_BRIE)) {
+
+
           if (items(i).quality < 50) {
             increaseQuality(i)
           }
