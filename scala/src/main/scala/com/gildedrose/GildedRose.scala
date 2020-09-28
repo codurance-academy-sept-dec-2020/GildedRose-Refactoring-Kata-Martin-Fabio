@@ -47,7 +47,7 @@ class GildedRose(val items: Array[Item]) {
 
 
     if (isSellinLessThan(i, 0)) {
-      items(i).quality = items(i).quality - items(i).quality
+      items(i).quality = 0
     }
   }
 
@@ -60,7 +60,7 @@ class GildedRose(val items: Array[Item]) {
   }
 
   private def decreaseSellin(i: Int) = {
-    items(i).sellIn = items(i).sellIn - 1
+    items(i).sellIn -= 1
   }
 
   private def isSellinLessThan(i: Int, sellIn: Int) = {
@@ -68,10 +68,10 @@ class GildedRose(val items: Array[Item]) {
   }
 
   private def decreaseQuality(i: Int) = {
-    items(i).quality = items(i).quality - 1
+    items(i).quality -= 1
   }
 
   private def increaseQuality(i: Int, amount: Int) = {
-    items(i).quality = items(i).quality + amount
+    items(i).quality += amount
   }
 }
