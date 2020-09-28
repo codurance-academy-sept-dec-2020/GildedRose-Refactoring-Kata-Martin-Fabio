@@ -30,5 +30,11 @@ object GoldenMaterFixture {
       println(item.toString)
     }
 
+    val testOutput: String = items
+      .map(item => item.toString)
+      .reduce((item1, item2) => item1 +"\n"+ item2)
+
+    assert(testOutput.equals(GOLDEN_MASTER_OUTPUT))
+
   }
 }
