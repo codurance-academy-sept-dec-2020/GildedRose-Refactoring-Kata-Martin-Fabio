@@ -9,14 +9,10 @@ class GildedRose(val items: Array[Item]) {
 
   def updateQuality() {
     for (i <- 0 until items.length) {
-      if (!items(i).name.equals(AGE_BRIE)
-        && !items(i).name.equals(BACKSTAGE_PASSES)) {
-        if (items(i).quality > 0) {
-          if (!items(i).name.equals(SULFURAS)) {
-            decreaseQuality(i)
-          }
-        }
-      } else {
+
+
+      if (items(i).name.equals(AGE_BRIE)
+        || items(i).name.equals(BACKSTAGE_PASSES)) {
         if (items(i).quality < 50) {
           increaseQuality(i)
 
@@ -32,6 +28,15 @@ class GildedRose(val items: Array[Item]) {
                 increaseQuality(i)
               }
             }
+          }
+        }
+      }
+
+
+      else {
+        if (items(i).quality > 0) {
+          if (!items(i).name.equals(SULFURAS)) {
+            decreaseQuality(i)
           }
         }
       }
