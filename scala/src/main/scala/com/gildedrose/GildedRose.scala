@@ -37,17 +37,16 @@ class GildedRose(val items: Array[Item]) {
         if (items(i).quality > 0) {
           decreaseQuality(i)
         }
+        if (isSellinLessThan(i, 0)) {
+          if (items(i).quality > 0) {
+            decreaseQuality(i)
+          }
+        }
       }
 
       if (isSellinLessThan(i, 0)) {
         if (!items(i).name.equals(AGE_BRIE)) {
-          if (!items(i).name.equals(BACKSTAGE_PASSES)) {
-            if (items(i).quality > 0) {
-              if (!items(i).name.equals(SULFURAS)) {
-                decreaseQuality(i)
-              }
-            }
-          } else {
+          if (items(i).name.equals(BACKSTAGE_PASSES)) {
             items(i).quality = items(i).quality - items(i).quality
           }
         } else {
