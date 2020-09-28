@@ -9,7 +9,6 @@ class GildedRose(val items: Array[Item]) {
 
   def updateQuality() {
     for (i <- 0 until items.length) {
-
       if (items(i).name.equals(AGE_BRIE)) {
         ageBrieBehaviour(i)
       } else if (items(i).name.equals(BACKSTAGE_PASSES)) {
@@ -17,8 +16,6 @@ class GildedRose(val items: Array[Item]) {
       } else if (!items(i).name.equals(SULFURAS)) {
         normalItemBehaviour(i)
       }
-
-
     }
   }
 
@@ -37,20 +34,17 @@ class GildedRose(val items: Array[Item]) {
   private def backstagePassBehaviour(i: Int) = {
     decreaseSellin(i)
     if (items(i).quality < 50) {
-      increaseQuality(i)
+      increaseQuality(i, 1)
     }
 
     if (isSellinLessThan(i, 11)) {
-      if (items(i).quality < 50) {
-        increaseQuality(i)
-      }
+      increaseQuality(i, 2)
     }
 
     if (isSellinLessThan(i, 6)) {
-      if (items(i).quality < 50) {
-        increaseQuality(i)
-      }
+      increaseQuality(i, 1)
     }
+
 
     if (isSellinLessThan(i, 0)) {
       items(i).quality = items(i).quality - items(i).quality
@@ -60,9 +54,9 @@ class GildedRose(val items: Array[Item]) {
   private def ageBrieBehaviour(i: Int) = {
     decreaseSellin(i)
     if (items(i).quality < 50)
-      increaseQuality(i)
+      increaseQuality(i, 1)
     if (isSellinLessThan(i, 0))
-      increaseQuality(i)
+      increaseQuality(i, 1)
   }
 
   private def decreaseSellin(i: Int) = {
@@ -77,7 +71,7 @@ class GildedRose(val items: Array[Item]) {
     items(i).quality = items(i).quality - 1
   }
 
-  private def increaseQuality(i: Int) = {
-    items(i).quality = items(i).quality + 1
+  private def increaseQuality(i: Int, amount: Int) = {
+    items(i).quality = items(i).quality + amount
   }
 }
