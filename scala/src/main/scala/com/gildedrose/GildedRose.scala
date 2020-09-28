@@ -11,53 +11,58 @@ class GildedRose(val items: Array[Item]) {
     for (i <- 0 until items.length) {
 
       if (items(i).name.equals(AGE_BRIE)) {
-        decreaseSellin(i)
-        if (items(i).quality < 50)
-          increaseQuality(i)
+        ageBrieBehaviour(i)
       } else if (items(i).name.equals(BACKSTAGE_PASSES)) {
-        decreaseSellin(i)
-        if (items(i).quality < 50) {
-          increaseQuality(i)
-        }
-
-        if (isSellinLessThan(i, 11)) {
-          if (items(i).quality < 50) {
-            increaseQuality(i)
-          }
-        }
-
-        if (isSellinLessThan(i, 6)) {
-          if (items(i).quality < 50) {
-            increaseQuality(i)
-          }
-        }
-
-        if (isSellinLessThan(i, 0)) {
-          items(i).quality = items(i).quality - items(i).quality
-        }
-      } else if (items(i).name.equals(SULFURAS)) {
-      } else {
-        decreaseSellin(i)
-        if (items(i).quality > 0) {
-          decreaseQuality(i)
-        }
-        if (isSellinLessThan(i, 0)) {
-          if (items(i).quality > 0) {
-            decreaseQuality(i)
-          }
-        }
+        backstagePassBehaviour(i)
+      } else if (!items(i).name.equals(SULFURAS)) {
+        normalItemBehaviour(i)
       }
 
-      if (isSellinLessThan(i, 0)) {
-        if (items(i).name.equals(AGE_BRIE)) {
 
+    }
+  }
 
-          if (items(i).quality < 50) {
-            increaseQuality(i)
-          }
-        }
+  private def normalItemBehaviour(i: Int) = {
+    decreaseSellin(i)
+    if (items(i).quality > 0) {
+      decreaseQuality(i)
+    }
+    if (isSellinLessThan(i, 0)) {
+      if (items(i).quality > 0) {
+        decreaseQuality(i)
       }
     }
+  }
+
+  private def backstagePassBehaviour(i: Int) = {
+    decreaseSellin(i)
+    if (items(i).quality < 50) {
+      increaseQuality(i)
+    }
+
+    if (isSellinLessThan(i, 11)) {
+      if (items(i).quality < 50) {
+        increaseQuality(i)
+      }
+    }
+
+    if (isSellinLessThan(i, 6)) {
+      if (items(i).quality < 50) {
+        increaseQuality(i)
+      }
+    }
+
+    if (isSellinLessThan(i, 0)) {
+      items(i).quality = items(i).quality - items(i).quality
+    }
+  }
+
+  private def ageBrieBehaviour(i: Int) = {
+    decreaseSellin(i)
+    if (items(i).quality < 50)
+      increaseQuality(i)
+    if (isSellinLessThan(i, 0))
+      increaseQuality(i)
   }
 
   private def decreaseSellin(i: Int) = {
